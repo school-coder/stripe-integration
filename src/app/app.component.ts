@@ -36,12 +36,12 @@ export class AppComponent implements OnInit {
     const {error} = await this.stripe.confirmSetup({
       elements: this.elements,
       confirmParams: {
-        return_url: 'https://google.co.in'
+        return_url: 'https://google.co.in/'
       }
     })
 
     if(error) {
-      console.log('Error in client: ' + error);
+      console.log('Error in client: ' + JSON.stringify(error));
     }
 
   }
