@@ -28,17 +28,21 @@ export class AppComponent implements OnInit {
     this.paymentElement.mount("#payment-card");
   }
 
-  createToken() {
+  async createToken() {
     // this.stripe.createToken(this.card).then( (result) => {
     //   console.log(JSON.stringify(result))
     // });
 
-    this.stripe.confirmSetup({
+    const {error} = await this.stripe.confirmSetup({
       elements: this.elements,
       confirmParams: {
         return_url: 'https://google.co.in'
       }
     })
+
+    if(error) {
+      console.log('Error in client: ' + error);
+    }
 
   }
 }
